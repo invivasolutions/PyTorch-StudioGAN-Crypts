@@ -35,7 +35,12 @@ import utils.custom_ops as custom_ops
 import models.model as model
 import metrics.preparation as pp
 
-
+def collate_fn(batch):
+  return {
+      'pixel_values': torch.stack([x['pixel_values'] for x in batch]),
+      'labels': torch.tensor([x['labels'] for x in batch])
+}
+    
 def load_worker(local_rank, cfgs, gpus_per_node, run_name, hdf5_path):
     # -----------------------------------------------------------------------------
     # define default variables for loading ckpt or evaluating the trained GAN model.
@@ -190,7 +195,7 @@ def load_worker(local_rank, cfgs, gpus_per_node, run_name, hdf5_path):
                                       num_workers=cfgs.RUN.num_workers,
                                       sampler=train_sampler,
                                       drop_last=True,
-                                      persistent_workers=True)
+                                      persistent_workers=True, collate_fn=collate_fn)
     else:
         train_dataloader = None
 
@@ -201,7 +206,7 @@ def load_worker(local_rank, cfgs, gpus_per_node, run_name, hdf5_path):
                                      pin_memory=True,
                                      num_workers=cfgs.RUN.num_workers,
                                      sampler=eval_sampler,
-                                     drop_last=False)
+                                     drop_last=False, collate_fn=collate_fn)
     else:
         eval_dataloader = None
 
@@ -328,7 +333,7 @@ def load_worker(local_rank, cfgs, gpus_per_node, run_name, hdf5_path):
                                      pin_memory=True,
                                      num_workers=cfgs.RUN.num_workers,
                                      sampler=prdc_sampler,
-                                     drop_last=False)
+                                     drop_last=False, collate_fn=collate_fn)
 
         real_feats = pp.prepare_real_feats(data_loader=prdc_dataloader,
                                            eval_model=eval_model,
