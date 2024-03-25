@@ -1,4 +1,6 @@
 from torchvision import models
+from torchvision.models.inception import InceptionOutputs, Inception_V3_Weights
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -114,7 +116,8 @@ def fid_inception_v3():
     This method first constructs torchvision's Inception and then patches the
     necessary parts that are different in the FID Inception model.
     """
-    inception = models.inception_v3(num_classes=1008, aux_logits=False, pretrained=False)
+    inception = models.inception_v3(weights=None, aux_logits=False)
+    inception.fc = torch.nn.Linear(inception.fc.in_features, 1008)
 
     inception.Mixed_5b = FIDInceptionA(192, pool_features=32)
     inception.Mixed_5c = FIDInceptionA(256, pool_features=64)

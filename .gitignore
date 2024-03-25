@@ -12,3 +12,10 @@ wandb/
 test/
 *.csv
 *.npy
+src/dataset/
+src/dataset512/
+Copy of Output from Runpod/
+.ipynb_*
+*.zip
+weights_out/
+additional files/
