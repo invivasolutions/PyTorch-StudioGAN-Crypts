@@ -1,6 +1,6 @@
 DATA:
   name: "Restained Crypts v3 Labels"
-  img_size: 500
+  img_size: 512
   num_classes: 8
 MODEL:
   backbone: "stylegan2"
@@ -9,8 +9,8 @@ MODEL:
   g_act_fn: "Auto"
   d_act_fn: "Auto"
   z_prior: "gaussian"
-  z_dim: 500
-  w_dim: 500
+  z_dim: 512
+  w_dim: 512
   g_conv_dim: "N/A"
   d_conv_dim: "N/A"
   apply_g_ema: True
