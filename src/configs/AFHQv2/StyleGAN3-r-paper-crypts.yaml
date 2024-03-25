@@ -22,7 +22,7 @@ LOSS:
   r1_place: "outside_loop"
 OPTIMIZATION:
   # These values will be slightly changed if lazy regularization is applied.
-  batch_size: 8
+  batch_size: 64
   g_lr: 0.0025
   d_lr: 0.002
   beta1: 0

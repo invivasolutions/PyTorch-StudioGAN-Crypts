@@ -1,2 +1,2 @@
 wandb login c2c840dbd3cd98dd70e8df69cbfe5b0352c10d00
-CUDA_VISIBLE_DEVICES=0,1 python3 main.py -t -metrics is fid prdc -cfg configs/AFHQv2/StyleGAN3-r-paper-crypts.yaml -data dataset/ -save /workspace/weights_out/
+CUDA_VISIBLE_DEVICES=0,1 python3 main.py -t -metrics is fid prdc -cfg configs/AFHQv2/StyleGAN3-r-paper-crypts.yaml -data dataset512/ -save /workspace/weights_out/
