@@ -22,6 +22,9 @@ def is_image(file_path, verbose=False):
         with Image.open(file_path) as img:
             # If successful, print the image format (optional)
             if verbose: print(f"Valid image file with format: {img.format}")
+            if img.width != 512 or img.height != 512:
+                print(f"{file_path} - wrong size")
+                return False
             return True
     except (IOError, SyntaxError) as e:
         if verbose: print(f"Invalid image file: {file_path}. Error: {e}")
@@ -30,7 +33,7 @@ def is_image(file_path, verbose=False):
 
     return False
 
-items = list(Path("dataset").rglob("*.png"))
+items = list(Path("dataset512").rglob("*.png"))
 
 for file in tqdm(items):
     strFile = str(file)
