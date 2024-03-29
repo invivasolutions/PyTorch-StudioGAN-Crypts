@@ -19,3 +19,6 @@ Copy of Output from Runpod/
 *.zip
 weights_out/
 additional files/
+src/small_dataset512/
+src/small_dataset/
+GAN Logs

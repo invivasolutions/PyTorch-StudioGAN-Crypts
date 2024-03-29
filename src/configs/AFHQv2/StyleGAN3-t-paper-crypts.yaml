@@ -11,7 +11,7 @@ MODEL:
   d_act_fn: "Auto"
   z_prior: "gaussian"
   z_dim: 512
-  w_dim: 512s
+  w_dim: 512
   g_conv_dim: "N/A"
   d_conv_dim: "N/A"
   apply_g_ema: True

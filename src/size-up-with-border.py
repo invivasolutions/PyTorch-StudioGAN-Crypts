@@ -38,4 +38,4 @@ def process_images(directory_path):
         
 # Example usage
 # Replace 'your_folder_path_here' with the path to your images folder.
-process_images('dataset/')
+process_images('small_dataset/')
