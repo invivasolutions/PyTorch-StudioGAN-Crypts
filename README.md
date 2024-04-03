@@ -201,7 +201,7 @@ Try ``python3 src/main.py`` to see available options.
 
 # Configuration Options & command line switches
 
-Included in `configs` are a number of example configuration files based on the work done in verifying the various GAN Models included in this package. There is also [a guide to the settings for StyleGAN models](configs/StyleGAN_ADA_GuideLine.md) and an [extended explanation of the settings available in a configuration yaml file](configs/configuration_file_guide.md)
+Included in `configs` are a number of example configuration files based on the work done in verifying the various GAN Models included in this package. There is also [a guide to the settings for StyleGAN models](src/configs/StyleGAN_ADA_GuideLine.md) and an [extended explanation of the settings available in a configuration yaml file](src/configs/configuration_file_guide.md)
 
 As well as the above command line switches there's [a full guide to the available options]
 
