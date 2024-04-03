@@ -199,6 +199,12 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python3 src/main.py -t -metrics none -cfg CONFIG_PA
 
 Try ``python3 src/main.py`` to see available options.
 
+# Configuration Options & command line switches
+
+Included in `configs` are a number of example configuration files based on the work done in verifying the various GAN Models included in this package. There is also [a guide to the settings for StyleGAN models](configs/StyleGAN_ADA_GuideLine.md) and an [extended explanation of the settings available in a configuration yaml file](configs/configuration_file_guide.md)
+
+As well as the above command line switches there's [a full guide to the available options]
+
 # Supported Training/Testing Techniques
 
 * Load All Data in Main Memory (``-hdf5 -l``)
