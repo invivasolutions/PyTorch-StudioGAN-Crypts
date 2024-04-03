@@ -1,7 +1,7 @@
 DATA:
   name: "Restained Crypts v3 Labels"
   img_size: 512
-  num_classes: 8
+  num_classes: 4
 MODEL:
   backbone: "stylegan2"
   g_cond_mtd: "cAdaIN"
@@ -17,7 +17,7 @@ MODEL:
 LOSS:
   adv_loss: "logistic"
   apply_r1_reg: True
-  r1_lambda: 0.5
+  r1_lambda: 1
   r1_place: "outside_loop"
 OPTIMIZATION:
   # These values will be slightly changed if lazy regularization is applied.

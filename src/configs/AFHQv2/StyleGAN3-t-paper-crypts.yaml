@@ -2,7 +2,7 @@
 DATA:
   name: "Restained Crypts v3 Labels"
   img_size: 512
-  num_classes: 8
+  num_classes: 4
 MODEL:
   backbone: "stylegan3"
   g_cond_mtd: "W/O"
