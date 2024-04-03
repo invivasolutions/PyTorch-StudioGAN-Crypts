@@ -1,109 +1,36 @@
+# Additional Information
+
+- The configuration file examples are located in the "configs" folder of the repository. Any parameters defined in the configuration files override the default values and any arguments set via the command line. This allows for easy adjustments and experimentation by modifying the configuration files without the need to change the command line arguments for each run.
+
 # Configuration Options
 
 This document outlines the configuration options available for the package. These options are set via command-line arguments when running the application.
 
-## Additional Information
-
-- The configuration file examples are located in the "configs" folder of the repository. Any parameters defined in the configuration files override the default values and any arguments set via the command line. This allows for easy adjustments and experimentation by modifying the configuration files without the need to change the command line arguments for each run.
-
 ## Logging Options
-
-- `--entity`: Entity for wandb logging. Type: `str`. Default: `None`.
-- `--project`: Project name for wandb logging. Type: `str`. Default: `None`.
-
-## Path Options
-
-- `-cfg`, `--cfg_file`: Configuration file path. Type: `str`. Default: `"./src/configs/CIFAR10/ContraGAN.yaml"`.
-- `-data`, `--data_dir`: Directory for dataset. Type: `str`. Default: `None`.
-- `-save`, `--save_dir`: Directory to save outputs. Type: `str`. Default: `"./"`.
-- `-ckpt`, `--ckpt_dir`: Checkpoint directory. Type: `str`. Default: `None`.
-- `-best`, `--load_best`: Load the best performed checkpoint. Action: `store_true`.
-
-## Training Options
-
-- `--seed`: Seed for generating random numbers. Type: `int`. Default: `-1`.
-- `-DDP`, `--distributed_data_parallel`: Enable distributed data parallel. Action: `store_true`.
-- `--backend`: CUDA backend for DDP training. Options: `'nccl'`, `'gloo'`. Type: `str`. Default: `"nccl"`.
-- `-tn`, `--total_nodes`: Total number of nodes for training. Type: `int`. Default: `1`.
-- `-cn`, `--current_node`: Rank of the current node. Type: `int`. Default: `0`.
-- `--num_workers`: Number of workers for data loading. Type: `int`. Default: `8`.
-- `-sync_bn`, `--synchronized_bn`: Turn on synchronized batch normalization. Action: `store_true`.
-- `-mpc`, `--mixed_precision`: Turn on mixed precision training. Action: `store_true`.
-
-## GAN Evaluation and Training Tricks
-
-- `--truncation_factor`: Truncation factor for applying truncation trick. Type: `float`. Default: `-1.0` (means not applying).
-- `--truncation_cutoff`: Truncation cutoff for StyleGAN. Type: `float`. Default: `None`.
-- `-batch_stat`, `--batch_statistics`: Use the statistics of a batch when evaluating GAN. Action: `store_true`.
-- `-std_stat`, `--standing_statistics`: Apply standing statistics for evaluation. Action: `store_true`.
-- `-std_max`, `--standing_max_batch`: Maximum batch size for calculating standing statistics. Type: `int`. Default: `-1` (means not applying).
-- `-std_step`, `--standing_step`: Number of steps for standing statistics. Type: `int`. Default: `-1` (means not applying).
-- `--freezeD`: Number of freezed blocks in the discriminator for transfer learning. Type: `int`. Default: `-1`.
-
-## Logging Options
-
-- `--entity`: Entity for wandb logging. Type: `str`. Default: `None`.
-- `--project`: Project name for wandb logging. Type: `str`. Default: `None`.
-
-## Path Options
-
-- `-cfg`, `--cfg_file`: Configuration file path. Type: `str`. Default: `"./src/configs/CIFAR10/ContraGAN.yaml"`.
-- `-data`, `--data_dir`: Directory for dataset. Type: `str`. Default: `None`.
-- `-save`, `--save_dir`: Directory to save outputs. Type: `str`. Default: `"./"`.
-- `-ckpt`, `--ckpt_dir`: Checkpoint directory. Type: `str`. Default: `None`.
-- `-best`, `--load_best`: Load the best performed checkpoint. Action: `store_true`.
-
-## Training Options
-
-- `--seed`: Seed for generating random numbers. Type: `int`. Default: `-1`.
-- `-DDP`, `--distributed_data_parallel`: Enable distributed data parallel. Action: `store_true`.
-- `--backend`: CUDA backend for DDP training. Options: `'nccl'`, `'gloo'`. Type: `str`. Default: `"nccl"`.
-- `-tn`, `--total_nodes`: Total number of nodes for training. Type: `int`. Default: `1`.
-- `-cn`, `--current_node`: Rank of the current node. Type: `int`. Default: `0`.
-- `--num_workers`: Number of workers for data loading. Type: `int`. Default: `8`.
-- `-sync_bn`, `--synchronized_bn`: Turn on synchronized batch normalization. Action: `store_true`.
-- `-mpc`, `--mixed_precision`: Turn on mixed precision training. Action: `store_true`.
-
-## GAN Evaluation and Training Tricks
-
-- `--truncation_factor`: Truncation factor for applying truncation trick. Type: `float`. Default: `-1.0` (means not applying).
-- `--truncation_cutoff`: Truncation cutoff for StyleGAN. Type: `float`. Default: `None`.
-- `-batch_stat`, `--batch_statistics`: Use the statistics of a batch when evaluating GAN. Action: `store_true`.
-- `-std_stat`, `--standing_statistics`: Apply standing statistics for evaluation. Action: `store_true`.
-- `-std_max`, `--standing_max_batch`: Maximum batch size for calculating standing statistics. Type: `int`. Default: `-1` (means not applying).
-- `-std_step`, `--standing_step`: Number of steps for standing statistics. Type: `int`. Default: `-1` (means not applying).
-- `--freezeD`: Number of freezed blocks in the discriminator for transfer learning. Type: `int`. Default: `-1`.
-
-
-
-
-## Detailed Option Explanations
-
-### Logging Options
 
 - `wandb` logging (`--entity`, `--project`): Weights & Biases (wandb) is a tool for tracking experiments, visualizing data, and sharing insights about machine learning projects. Specify the `entity` as your username or team name in wandb, and `project` as the name of the project you're working on.
 
-### Path Options
+## Path Options
 
 - The `-cfg`, `--cfg_file` specifies the path to a YAML or JSON configuration file, allowing users to manage configurations separately from the command line interface. This is useful for setting up experiments with different parameters.
 - `-data`, `--data_dir` is the directory where your dataset is located. This path is crucial for loading your data correctly.
 - `-save`, `--save_dir` determines where to save output files, such as models and logs, during training or evaluation.
 - `-ckpt`, `--ckpt_dir` and `-best`, `--load_best` are related to model checkpoints. The former specifies where to save or load model checkpoints, and the latter indicates whether to load the best-performing model checkpoint based on some validation metric.
 
-### Training Options
+## Training Options
 
 - Setting a `--seed` ensures reproducibility in experiments by initializing the random number generators of Python, NumPy, and PyTorch with the same seed.
 - `-DDP`, `--distributed_data_parallel` enables Distributed Data Parallel training, which is a method of parallelizing data across multiple GPUs, potentially across several nodes, to accelerate training.
 - `--backend` specifies the backend used for inter-GPU communication during distributed training, with "nccl" being optimized for NVIDIA GPUs and "gloo" being a more cross-platform option.
 
-### GAN-Specific Options
+## GAN-Specific Options
 
 - The `--truncation_factor` and `--truncation_cutoff` are techniques used to regulate the diversity-quality tradeoff in generated images by modulating the latent space.
 - `-batch_stat`, `--batch_statistics` and `-std_stat`, `--standing_statistics` are strategies for evaluating Generative Adversarial Networks (GANs) more effectively by either using batch statistics or "standing" statistics over multiple batches for normalization layers.
 - `-std_max`, `--standing_max_batch`, and `-std_step`, `--standing_step` further refine the standing statistics calculation by limiting the batch size and the number of steps over which statistics are accumulated.
 - `--freezeD` is used in transfer learning scenarios, where parts of the discriminator are frozen to transfer knowledge from one task to another without the need for retraining those parts.
 
-### Advanced Features
+## Advanced Features
 
 - **Synchronized Batch Normalization**: When using multiple GPUs, it's crucial to synchronize the mean and variance computation of batch normalization layers across all devices. This ensures that each device normalizes its inputs using the global mean and variance, which is especially important for consistency in batch statistics when training models in a distributed manner.
 - **Mixed Precision Training** (`-mpc`, `--mixed_precision`): Utilizes floating-point 16 (FP16) and 32 (FP32) to speed up training, reduce memory usage, and maintain the model's accuracy. It's particularly effective on GPUs with Tensor Cores that accelerate FP16 computations.
@@ -138,7 +65,7 @@ This document outlines the configuration options available for the package. Thes
 - `-knn`, `--k_nearest_neighbor`: Perform k-nearest neighbor analysis to evaluate the diversity and coverage of the generated images compared to the real dataset.
 - `-itp`, `--interpolation`: Conduct interpolation analysis to understand the smoothness and transitions between different points in the latent space.
 
-### Analysis Options
+## Analysis Options
 
 - `-fa`, `--frequency_analysis`: Conduct frequency analysis to examine the distribution of frequencies in the generated images. This can help identify issues like mode collapse or check the diversity of the generated images.
 - `-tsne`, `--tsne_analysis`: Perform t-SNE analysis to visualize the high-dimensional data of generated images in a two-dimensional space. It's useful for understanding the clustering and diversity of the images.
@@ -149,7 +76,7 @@ This document outlines the configuration options available for the package. Thes
 - `-sefa_axis`, `--num_semantic_axis`: Number of semantic axes to explore via SEFA. This determines the number of latent directions identified for manipulation. Type: `int`. Default: `-1`.
 - `-sefa_max`, `--maximum_variations`: Specifies the range for interpolating between \(z\) and \(z + 	ext{maximum_variations} 	imes 	ext{eigen-vector}\). This controls how much variation is introduced along each semantic axis identified by SEFA. Type: `float`. Default: `-1`.
 
-### Performance and Utility Options
+## Performance and Utility Options
 
 - `-empty_cache`, `--empty_cache`: Empty CUDA caches after each training step of the generator and discriminator. While it may slightly reduce memory usage, it can slow down training speed and is not recommended for normal use.
 - `--print_freq`: Logging interval, determining how often to print logs during training. Type: `int`. Default: `100`.
